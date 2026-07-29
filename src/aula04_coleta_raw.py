@@ -49,7 +49,8 @@ def get_cotacao_dolar():
 if __name__ == "__main__":
 
     for _ in range(20):
+        print (f'Coleta {_+1} de 20')
         get_cotacao_dolar()
-        sleep = np.random.randint(30, 120)
+        sleep = np.random.randint(30, 240)  # Gera um tempo aleatório entre 30 e 240 segundos
         print (f"Aguardando {sleep} segundos antes da próxima requisição...")
         time.sleep(sleep)  # Aguarda um tempo aleatório entre as requisições
