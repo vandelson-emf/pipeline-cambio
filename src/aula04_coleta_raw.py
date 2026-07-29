@@ -1,0 +1,48 @@
+'''
+Este script captura a cotação do câmbio do dólar (usd) para o real (brl), salva o dado original em formato .json com o timestamp da coleta:
+    raw/AAAA-MM-DD_HH-MM-SS_cambio_usd_brl.json
+
+'''
+
+import json
+import requests
+
+from datetime import datetime
+from pathlib import Path
+
+# URL da API para obter a cotação do dólar
+URL = "https://economia.awesomeapi.com.br/json/last/USD-BRL"
+
+# Path para salvar as cotações em formato JSON
+SAVE_PATH = Path("data/raw")
+
+def get_cotacao_dolar():
+
+    # Cria o diretório 'raw' se não existir
+    SAVE_PATH.mkdir(parents=True, exist_ok=True) 
+
+    # Faz a requisição GET para a API
+    response = requests.get(URL, timeout=10)
+    # Levanta uma exceção se a requisição falhar
+    response.raise_for_status()
+
+    # Verifica se a requisição foi bem-sucedida
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Cria o timestamp para o nome do arquivo
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        filename = f"{SAVE_PATH}/{timestamp}_cambio_usd_brl.json"
+        
+        # Salva os dados em formato JSON
+        with open(filename, 'w', encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        
+        print(f"Cotação do dólar para real salva em: {filename}")
+        return data
+    else:
+        print("Erro ao obter a cotação do dólar.")
+        return None
+
+if __name__ == "__main__":
+    get_cotacao_dolar()
