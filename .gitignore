@@ -3,4 +3,3 @@ __pycache__/
 .env
 config.py
 *.log
-/src/estudos_testes_anotacao_aulas/*.*
