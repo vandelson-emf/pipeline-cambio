@@ -5,6 +5,8 @@ Este script captura a cotação do câmbio do dólar (usd) para o real (brl), sa
 '''
 
 import json
+import numpy as np
+import time
 import requests
 
 from datetime import datetime
@@ -45,4 +47,9 @@ def get_cotacao_dolar():
         return None
 
 if __name__ == "__main__":
-    get_cotacao_dolar()
+
+    for _ in range(20):
+        get_cotacao_dolar()
+        sleep = np.random.randint(30, 120)
+        print (f"Aguardando {sleep} segundos antes da próxima requisição...")
+        time.sleep(sleep)  # Aguarda um tempo aleatório entre as requisições
