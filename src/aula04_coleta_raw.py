@@ -1,6 +1,6 @@
 '''
 Este script captura a cotação do câmbio do dólar (usd) para o real (brl), salva o dado original em formato .json com o timestamp da coleta:
-    raw/AAAA-MM-DD_HH-MM-SS_cambio_usd_brl.json
+    data/raw/cambio_usd_brl_AAAA-MM-DD_HH-MM-SS.json
 
 '''
 
@@ -34,7 +34,7 @@ def get_cotacao_dolar():
         
         # Cria o timestamp para o nome do arquivo
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        filename = f"{SAVE_PATH}/{timestamp}_cambio_usd_brl.json"
+        filename = f"{SAVE_PATH}/cambio_usd_brl_{timestamp}.json"
         
         # Salva os dados em formato JSON
         with open(filename, 'w', encoding="utf-8") as f:
@@ -48,11 +48,11 @@ def get_cotacao_dolar():
 
 if __name__ == "__main__":
 
-    for _ in range(20):
-        print (f'Coleta {_+1} de 20')
+    for _ in range(10):
+        print (f'Coleta {_+1} de 10')
         get_cotacao_dolar()
 
-        if _ < 19:  # Evita aguardar após a última coleta
-            sleep = np.random.randint(30, 240)  # Gera um tempo aleatório entre 30 e 240 segundos
+        if _ < 9:  # Evita aguardar após a última coleta
+            sleep = np.random.randint(10, 60)  # Gera um tempo aleatório entre 10 e 60 segundos
             print (f"Aguardando {sleep} segundos antes da próxima requisição...")
             time.sleep(sleep)  # Aguarda um tempo aleatório entre as requisições
