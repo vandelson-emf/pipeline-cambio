@@ -48,11 +48,12 @@ def get_cotacao_dolar():
 
 if __name__ == "__main__":
 
-    for _ in range(10):
-        print (f'Coleta {_+1} de 10')
+    gets = 1
+    for _ in range(gets):  # Coleta 1 vez
+        print (f'Coleta {_+1} de {gets}')
         get_cotacao_dolar()
 
-        if _ < 9:  # Evita aguardar após a última coleta
+        if _ < gets - 1:  # Evita aguardar após a última coleta
             sleep = np.random.randint(10, 60)  # Gera um tempo aleatório entre 10 e 60 segundos
             print (f"Aguardando {sleep} segundos antes da próxima requisição...")
             time.sleep(sleep)  # Aguarda um tempo aleatório entre as requisições
