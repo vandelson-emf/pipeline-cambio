@@ -72,5 +72,5 @@ if __name__ == "__main__":
     df = pd.concat(tabelas, ignore_index=True)
     validar(df)
     TRATADA_DIR.mkdir(parents=True, exist_ok=True)
-    df.to_csv(TRATADA_DIR / "cotacoes.csv", index=False)
+    df.to_csv(TRATADA_DIR / "cotacoes.csv", index=False, encoding="utf-8")
     logger.info("tratada gravada (%d linhas)", len(df))
