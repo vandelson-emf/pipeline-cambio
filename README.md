@@ -9,3 +9,6 @@ transforma com Pandas e carrega em PostgreSQL e MongoDB Atlas.
 1. Criar e ativa o venv
 2. pip install -r requirements.txt
 3. python src/pipeline.py
+
+## Diagrama
+![Diagrama](./pipeline_provisorio.png)
